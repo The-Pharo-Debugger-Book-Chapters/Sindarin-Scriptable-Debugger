@@ -1,1 +1,2 @@
-# Sindarin
+
+<!inputFile|path=sindarin/index.md!>
