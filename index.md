@@ -2,15 +2,10 @@
 %<!inputFile|path=sindarin/index.md!>
 
 
-## What is a scriptable debugger?
 
-## Sindarin by example
-
+<!inputFile|path=sindarin/introduction.md!>
+<!inputFile|path=sindarin/byexample.md!>
 <!inputFile|path=sindarin/api.md!>
+<!inputFile|path=sindarin/advanced.md!>
+<!inputFile|path=sindarin/extending.md!>
 
-## Advanced scenarios
-### Implementing an instantiation detector
-### Implementing a parser debugger
-### Implementing a skipping operator
-
-## Extending the debugger with Sindarin scripts 
