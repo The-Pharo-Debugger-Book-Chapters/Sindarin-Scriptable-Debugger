@@ -1,4 +1,4 @@
-## Table: The Sindarin core API
+## Details of the API, with examples
 
 ### Manipulation of the debugged process
 | Command | Description |
