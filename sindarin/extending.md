@@ -4,7 +4,7 @@ The debugger can be scripted in two ways: from the live scripting pane, during t
 It is important to remember that every executing script might advance the execution forward or change its state.
 Therefore, we must be careful when manipulating the execution as it can have irreversible effects.
 
-In the following examples, we will debug a `STON` parsing operation.
+In the following examples, we will debug a `STON` parsing operation, and we will implement domain-specific stepping operator for the STON parser.
 We will use the following code:
 
 ```Smalltalk
@@ -123,3 +123,10 @@ defaultName
 
 
 ### Adding a new menu extending the debugger
+
+We just created on script that implements a domain-specific stepping operator that steps between object parsing operations.
+However, the STON parser has a variety of parsing operations that may also be interesting.
+It makes little sense to group these commands under the Advanced menu, as they are domain-specific, unlike the general-purpose scripts typically found there.
+
+Therefore, we will build a new menu for our STON stepping scripts!
+For that, we will create a generic command that we use to instantiate a new menu with the STON domain-specific stepping operators.
