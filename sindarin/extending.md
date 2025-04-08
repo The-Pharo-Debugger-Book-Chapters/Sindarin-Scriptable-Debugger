@@ -16,7 +16,7 @@ Each time we refer to "debug", we mean "debug that example expression".
 
 ### The Sindarin live scripting pane
 The live scripting pane allows us to directly execute scripts from the debugger.
-The scripting pane might not be activated, in which case we have to open the debugger extensions menu and activate the scripting pane (*@fig:activating-scripting-pane@*).
+The scripting pane might not be activated, in which case we have to open the debugger extensions menu and activate the scripting pane (fig. *@fig:activating-scripting-pane@*).
 
 ![Activating the Sindarin debugger scripting pane.](graphics/scripting-pane.drawio.pdf label=fig:activating-scripting-pane)
 
@@ -24,7 +24,20 @@ In our example, since we're parsing a serialized object, we want to directly get
 One might argue that we could just set a breakpoint in that method, then proceed the execution and wait until the breakpoint hits.
 That is true.
 However, there are advantages to use a script:
-- since we're using an API to a parser, there might 
+- Since we're using an API to a parser, there might be several strategies implementing a "parse object" method, how should we choose in which one set a breakpoint?
+- Since we're already in the debugger, it might break our flow to look for the method(s) to set breakpoints then come back to the debugger.
+
+Let us script our debugger: we will write a script that steps the execution until a `parseObject` method is activated.
+We write the following in the scripting pane:
+```Smalltalk
+sindarin stepUntil: [ sindarin selector = #parseObject ]
+```
+
+In this script, `sindarin` is an object that exposes the Sindarin API.
+The `stepUntil:` interface steps the execution until the condition passed as a parameter in a block.
+Here, we the stopping condition is when we reach a method whose selector is `parseObject`.
+We execute the script by clicking on the *play* button of the scripting pane, and the debugger arrives to the `parseObject` method of the STON parser.
+
 
 
 ### The Sindarin advanced debugger menu
