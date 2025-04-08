@@ -166,3 +166,36 @@ execute
 			sindarin stepUntil: [ sindarin selector = targetParsingMethod asSymbol ] ]
 ```
 
+```Smalltalk
+buildSindarinSTONExtentionCommandsGroupWith: stDebuggerInstance forRoot: rootCommandGroup
+	<extensionCommands>
+``` 
+```Smalltalk
+| commands toolbarSTONGroup |
+commands := self stonReaderParsingSelectors collect: [ :selector |
+                | cmd |
+                cmd := SindarinSTONParsingCommand forSpecContext:
+                            stDebuggerInstance.
+                cmd decoratedCommand targetParsingMethod: selector asString.
+                cmd ].
+``` 
+We create a new toolbar group, under which we want our commands to appear.
+We configure the group as a popover group, with a name and an icon.
+In the context of this chapter, this group configuration is arbitrary  and could be changed to other settings:
+```Smalltalk
+toolbarSTONGroup := CmCommandGroup forSpec
+        beToolbarPopoverButton;
+        name: 'STON';
+        icon: (stDebuggerInstance application iconNamed: #changeUpdate);
+        yourself.
+``` 
+We find the main toolbar command group and register our new group, so that it is known by the debugger as a toolbar group to display as a menu:
+```Smalltalk
+(self debuggerToolbarCommandGroupFor: rootCommandGroup) register: toolbarSTONGroup.
+``` 
+Finally, we register each command under the `toolbarSTONGroup`, which makes our new menu appear the next time we debug ():
+```Smalltalk
+commands do: [ :c | toolbarSTONGroup register: c ].	
+``` 
+
+![The new command is available from the advanced menu!](graphics/new-command.drawio.pdf label=fig:integrated-command)
