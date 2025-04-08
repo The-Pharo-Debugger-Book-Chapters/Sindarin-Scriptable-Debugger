@@ -96,14 +96,15 @@ defaultDescription
 
 Instance side, we only have to write the `execute` method that is called upon a click on the command in the menu.
 We cannot reuse exactly our first script from the scripting pane.
-First, we have to obtain a reference to the object exposing the  
-```Smalltalk
-execute
+First, we have to obtain a reference to the object exposing the Sindarin API (line ).
+
+[[[
+    execute
 	| sindarin |
 	sindarin := self context sindarinDebugger.
 	self context debuggerActionModel preventUpdatesDuring: [
 			sindarin stepUntil: [ sindarin selector = #parseObject ] ]
-```
+]]]
 
 
 
