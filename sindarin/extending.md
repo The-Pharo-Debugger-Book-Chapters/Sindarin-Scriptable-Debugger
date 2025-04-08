@@ -66,7 +66,46 @@ These scripts enable unconventional debugging actions that facilitate the free e
 
 
 ### Adding a new command in the advanced debugger menu
-New commands can easily be added in the *Advanced* menu of the debugger.
+
+Now, let us imagine that we will actually reuse a lot our script to step to the STON `parseObject` method.
+We might want to have this script available from the advanced debugger menu!
+To appear in the advance menu, scripts are implemented as commands which are automatically integrated into the menu.
+
+We create such command by writing a class that inherits from the base classe `SindarinCommand`.
+In this example, let us create this class into a `Sindarin-Chapter-Commands` package:
+
+```Smalltalk
+SindarinCommand << #SindarinSTONParsingCommand
+	slots: {};
+	package: 'Sindarin-Chapter-Commands'
+```
+
+In this class, we must write specific methods for the command to be available.
+Class side, we need to write three methods: `defaultIconName` sets the icon used in the menu for that command, `defaultName` sets the name used in the menu for that command,  and `defaultDescription` sets the popover description shown when passing the mouse of that command in the menu.
+
+```Smalltalk
+defaultIconName
+	^#through
+
+defaultName
+	^ 'steps to next #parseObject'
+
+defaultDescription
+	^ 'Advances to the next STON object parsing.'
+```
+
+Instance side, we only have to write the `execute` method that is called upon a click on the command in the menu.
+We cannot reuse exactly our first script from the scripting pane.
+First, we have to obtain a reference to the object exposing the  
+```Smalltalk
+execute
+	| sindarin |
+	sindarin := self context sindarinDebugger.
+	self context debuggerActionModel preventUpdatesDuring: [
+			sindarin stepUntil: [ sindarin selector = #parseObject ] ]
+```
+
+
 
 #### Building the new command
 
