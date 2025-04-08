@@ -170,6 +170,7 @@ execute
 buildSindarinSTONExtentionCommandsGroupWith: stDebuggerInstance forRoot: rootCommandGroup
 	<extensionCommands>
 ``` 
+
 ```Smalltalk
 | commands toolbarSTONGroup |
 commands := self stonReaderParsingSelectors collect: [ :selector |
@@ -198,4 +199,3 @@ Finally, we register each command under the `toolbarSTONGroup`, which makes our 
 commands do: [ :c | toolbarSTONGroup register: c ].	
 ``` 
 
-![The new command is available from the advanced menu!](graphics/new-command.drawio.pdf label=fig:integrated-command)
