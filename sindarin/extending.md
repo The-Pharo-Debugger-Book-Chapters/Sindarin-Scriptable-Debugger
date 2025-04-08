@@ -96,9 +96,12 @@ defaultDescription
 
 Instance side, we only have to write the `execute` method that is called upon a click on the command in the menu.
 We cannot reuse exactly our first script from the scripting pane.
-First, we have to obtain a reference to the object exposing the Sindarin API (line ).
+We use the `context` interface to obtain a reference to the debugger presenter and its model that control the debuggeed execution.
+First, we use the debugger (i.e., the context) to obtain a reference to the object exposing the Sindarin API (line 3).
+Second, we encapsulate the script in a block that executes the script without updating the debugger presenter.
 
-[[[
+
+[[[lineNumber=true
     execute
 	| sindarin |
 	sindarin := self context sindarinDebugger.
