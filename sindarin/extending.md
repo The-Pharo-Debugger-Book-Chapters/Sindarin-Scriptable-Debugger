@@ -38,9 +38,10 @@ The `stepUntil:` interface steps the execution until the condition passed as a p
 Here, we the stopping condition is when we reach a method whose selector is `parseObject`.
 We execute the script by clicking on the *play* button of the scripting pane, and the debugger arrives to the `parseObject` method of the STON parser.
 
-
-
 ### The Sindarin advanced debugger menu
+
+![Sindarin advanced debugger menu.](graphics/debugger-advanced-menu.drawio.pdf label=fig:debugger-advanced-menu)
+
 
 ### Adding a new command in the advanced debugger menu
 New commands can easily be added in the *Advanced* menu of the debugger.
