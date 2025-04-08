@@ -130,3 +130,39 @@ It makes little sense to group these commands under the Advanced menu, as they a
 
 Therefore, we will build a new menu for our STON stepping scripts!
 For that, we will create a generic command that we use to instantiate a new menu with the STON domain-specific stepping operators.
+
+We first modify our command by adding an instance variable that will hold the target STON parsing operation:
+```Smalltalk
+SindarinCommand << #SindarinSTONParsingCommand
+	slots: { #targetParsingMethod };
+	package: 'Sindarin-Chapter-Commands'
+```
+
+We add accessors to that instance variable:
+
+```Smalltalk
+targetParsingMethod: anObject
+	targetParsingMethod := anObject
+
+targetParsingMethod
+	^ targetParsingMethod
+```
+
+We add, instance-side, a `name` method that will be used dynamically to build the name of the method.
+This new name now depends on the target parsing operation method name:
+
+```Smalltalk
+name
+	^ 'Step to next ' , self targetParsingMethod
+```
+
+We have to adapt a bit the `execute` method to use the target operation instead of the explicit `#parseObject` selector:
+
+```
+execute
+	| sindarin |
+	sindarin := self context sindarinDebugger.
+	self context debuggerActionModel preventUpdatesDuring: [
+			sindarin stepUntil: [ sindarin selector = targetParsingMethod asSymbol ] ]
+```
+
