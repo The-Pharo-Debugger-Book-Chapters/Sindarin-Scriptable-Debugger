@@ -11,14 +11,21 @@ We will use the following code:
 STON fromString: (STON toString: OrderedCollection new).
 ```
 
-Each time we refer to "debug", we mean "debug the example expression".
+Each time we refer to "debug", we mean "debug that example expression".
 
 
 ### The Sindarin live scripting pane
 The live scripting pane allows us to directly execute scripts from the debugger.
-The scripting pane might not be activated, in which case we have to open the debugger extensions menu and activate the scripting pane (*@fig:activating-scripting-pane@*)
+The scripting pane might not be activated, in which case we have to open the debugger extensions menu and activate the scripting pane (*@fig:activating-scripting-pane@*).
 
-![Activating the Sindarin debugger scripting pane.](graphics/scripting-pane.drawio.pdf&label=fig:activating-scripting-pane)
+![Activating the Sindarin debugger scripting pane.](graphics/scripting-pane.drawio.pdf label=fig:activating-scripting-pane)
+
+In our example, since we're parsing a serialized object, we want to directly get to the method parsing the object.
+One might argue that we could just set a breakpoint in that method, then proceed the execution and wait until the breakpoint hits.
+That is true.
+However, there are advantages to use a script:
+- since we're using an API to a parser, there might 
+
 
 ### The Sindarin advanced debugger menu
 
