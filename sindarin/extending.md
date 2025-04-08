@@ -98,18 +98,18 @@ Instance side, we only have to write the `execute` method that is called upon a 
 We cannot reuse exactly our first script from the scripting pane.
 We use the `context` interface to obtain a reference to the debugger presenter and its model that control the debuggeed execution.
 First, we use the debugger (i.e., the context) to obtain a reference to the object exposing the Sindarin API (line 3).
-Second, we encapsulate the script in a block that executes the script without updating the debugger presenter.
+Second, we encapsulate the script in a block (line 4) that executes the script without updating the debugger presenter.
 Failing to do such encapsulation will trigger an update of the debugger presenter views after each step, which considerably slows down the script execution.
 
-```lineNumber=true
-    execute
-	| sindarin |
-	sindarin := self context sindarinDebugger.
-	self context debuggerActionModel preventUpdatesDuring: [
-			sindarin stepUntil: [ sindarin selector = #parseObject ] ]
+```
+execute
+1	| sindarin |
+2	sindarin := self context sindarinDebugger.
+3	self context debuggerActionModel preventUpdatesDuring: [
+4			sindarin stepUntil: [ sindarin selector = #parseObject ] ]
 ```
 
-
+![The new command is available from the advanced menu!](graphics/new-command.drawio.pdf label=fig:integrated-command)
 
 
 #### Building the new command
