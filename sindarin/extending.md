@@ -109,17 +109,17 @@ execute
 4			sindarin stepUntil: [ sindarin selector = #parseObject ] ]
 ```
 
+Our new command is not yet available in the menu.
+To make it appear, we must modify the class side `defaultName` method to add the pragma `<codeExtensionDebugCommand:1>`.
+This pragma is used by the system to collect the commands that must be available from the menu, and instantiate them into the menu.
+
+```Smalltalk
+defaultName
+	<codeExtensionDebugCommand:1>
+	^ 'steps to next #parseObjects'
+```
+
 ![The new command is available from the advanced menu!](graphics/new-command.drawio.pdf label=fig:integrated-command)
-
-
-#### Building the new command
-
-- inherit from SindarinCommand
-- write the subclass responsibilities requirements
-- put a halt in execute
-- open a debugger => see the command (with screenshot)
-
-#### Testing the new command
 
 
 ### Adding a new menu extending the debugger
