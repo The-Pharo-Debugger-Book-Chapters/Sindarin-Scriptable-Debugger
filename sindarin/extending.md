@@ -15,11 +15,14 @@ Each time we refer to "debug", we mean "debug the example expression".
 
 
 ### The Sindarin live scripting pane
-![Activating the Sindarin debugger scripting pane.](graphics/scripting-pane.drawio.pdf)
+The live scripting pane allows us to directly execute scripts from the debugger.
+The scripting pane might not be activated, in which case we have to open the debugger extensions menu and activate the scripting pane (*@fig:activating-scripting-pane@*)
 
-### The Sindarin debugger menu
+![Activating the Sindarin debugger scripting pane.](graphics/scripting-pane.drawio.pdf&label=fig:activating-scripting-pane)
 
-### Adding a new command in the debugger
+### The Sindarin advanced debugger menu
+
+### Adding a new command in the advanced debugger menu
 New commands can easily be added in the *Advanced* menu of the debugger.
 
 #### Building the new command
