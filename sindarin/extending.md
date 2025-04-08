@@ -40,6 +40,30 @@ We execute the script by clicking on the *play* button of the scripting pane, an
 
 ### The Sindarin advanced debugger menu
 
+The advanced debugger menu (fig. *@fig:debugger-advanced-menu@*) contains all Sindarin debugger scripts that are part of the standard Pharo debugging tools.
+These scripts allows us to perform debug actions that are not conventional, but that we need to explore freely an execution.
+
+- `SindarinCreateCommandFromScriptCommand`: Create a command from the current debugging script.
+- `SindarinJumpToCaretCommand`: Move the execution to the caret position without executing any code but preserving current state. Execution resumes from this position.
+- `SindarinLoadScriptCommand`: Load a debugging script.
+- `SindarinRefreshCommand`: Refresh the UI. Necessary after manual control of Sindarin.
+- `SindarinRemoveCommandCommand`: Remove the command corresponding to the current debugging script.
+- `SindarinRunScriptCommand`: Run the current debugging script.
+- `SindarinSaveScriptCommand`: Save the current debugging script.
+- `SindarinStepBytecodeCommand`: Step a single bytecode.
+- `SindarinStepCommand`: Step in.
+- `SindarinStepOverCommand`: Step over.
+- `SindarinStepToMethodEntryCommand`: Step to the beginning of the next method, then returns debugger control.
+- `SindarinStepToNextInstanceCreation`: Steps to the next object instantiation.
+- `SindarinStepToReturnCommand`: Steps to the next method return.
+- `SindarinSTONParsingCommand`: Not described command.
+- `SindarinSkipCommand`: Skips execution of the next step, then returns debugger control.
+- `SindarinSkipUpToCommand`: Skips execution and stops before the selected instruction (or the instruction preceding the cursor).
+- `SindarinStepToNextExecutionInClassCommand`: Steps until the execution comes back to code executing in the current class.
+- `SindarinStepToNextExecutionInObjectCommand`: Steps until the execution comes back to code executing in the current receiver.
+
+
+
 ![Sindarin advanced debugger menu.](graphics/debugger-advanced-menu.drawio.pdf label=fig:debugger-advanced-menu)
 
 
