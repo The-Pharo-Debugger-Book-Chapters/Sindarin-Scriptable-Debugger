@@ -15,7 +15,7 @@ Each time we refer to "debug", we mean "debug the example expression".
 
 
 ### The Sindarin live scripting pane
-
+![Activating the Sindarin debugger scripting pane.](graphics/scripting-pane.drawio.pdf)
 
 ### The Sindarin debugger menu
 
