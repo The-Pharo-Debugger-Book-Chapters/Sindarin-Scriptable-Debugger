@@ -33,6 +33,16 @@
 | `stepOver` | Executes over the next instruction. |
 | `stepUntil: P` | Steps the execution until the predicate `P` is true. |
 | `continue` | Steps until the execution is interrupted or completed. |
-| `isMessage` | Returns `true` if the next instruction is a message send. |
+| `isMessageSend` | Returns `true` if the next instruction is a message send. |
+| `isAssignment` | Returns `true` if the next instruction is an assignment. |
+| `break` | Returns a configurable breakpoint object. |
+
+### Variants: some syntactic sugar
+| Command | Description |
+|---------|------------|
+| `stepOver: n` | Executes over the next instruction. |
+| `node` | Steps the execution until the predicate `P` is true. |
+| `continue` | Steps until the execution is interrupted or completed. |
+| `isMessageSend` | Returns `true` if the next instruction is a message send. |
 | `isAssignment` | Returns `true` if the next instruction is an assignment. |
 | `break` | Returns a configurable breakpoint object. |
