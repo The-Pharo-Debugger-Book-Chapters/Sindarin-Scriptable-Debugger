@@ -77,7 +77,12 @@ For a better perspective, we can inspect the `sindarin` variable, which opens a 
 
 ### Variable breakpoint example
 
-
-sindarin stepUntil: [ sindarin isAssignment and: [ sindarin assignmentVariableName = 'lastIndex' ] ]
+```Smalltalk
+sindarin := SindarinDebugger debug: [ OrderedCollection new add: 1 ].
+sindarin stepUntil: [ 
+	sindarin isAssignment and: [
+		sindarin assignmentVariableName = 'lastIndex' ] ].
+sindarin node sourceCode.  "'lastIndex := firstIndex - 1'"
+```
 
 ### Sindarin in the debugger
