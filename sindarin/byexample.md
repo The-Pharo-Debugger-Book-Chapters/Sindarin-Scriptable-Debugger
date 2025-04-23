@@ -70,7 +70,7 @@ Notice the following points:
 We must satisfy this condition before trying to access the `selector` of the message being sent, else we might not be in such context and an exception will be raised.
 - The `sourceCode` returns the next instruction to be executed, supposedly within the body of the `addLast:` method. 
 This API is not really adapted to visualize the actual executing source code. 
-For a better perspective, we can inspect the `sindarin` variable, which opens a minimal debugger that allows us to visualize the debugged code ((fig. *@fig:sindarin-inspector@*)).
+For a better perspective, we can inspect the `sindarin` variable, which opens a minimal debugger that allows us to visualize the debugged code (fig. *@fig:sindarin-inspector@*).
 
 ![Sindarin advanced debugger menu.](graphics/sindarin-inspector.drawio.pdf label=fig:sindarin-inspector)
 
