@@ -55,6 +55,26 @@ sindarin stepOver "==> execution finished exception"
 
 ### Simple breakpoint example
 
+Let us implement a method breakpoint, that will break the execution when it reaches the `addLast:` method executed somewhere in the control flow of the `OrderedCollection` code.
+We do this using the `stepUntil:` interface, that steps the execution bytecode by bytecode until a particular condition is satisfied.
+The condition is written as a block of Pharo code using the Sindarin API:
+
+```Smalltalk
+sindarin := SindarinDebugger debug: [ OrderedCollection new add: 1 ].
+sindarin stepUntil: [
+	sindarin isMessageSend and: [sindarin selector = #addLast:]].
+sindarin node sourceCode. "'array size'"
+```
+Notice the following points:
+- We first test if we are in the context of a message send, using `isMessageSend`. 
+We must satisfy this condition before trying to access the `selector` of the message being sent, else we might not be in such context and an exception will be raised.
+- The `sourceCode` returns the next instruction to be executed, supposedly within the body of the `addLast:` method. 
+This API is not really adapted to visualize the actual executing source code. 
+For a better perspective, we can inspect the `sindarin` variable, which opens a minimal debugger that allows us to visualize the debugged code ((fig. *@fig:sindarin-inspector@*)).
+
+![Sindarin advanced debugger menu.](graphics/sindarin-inspector.drawio.pdf label=fig:sindarin-inspector)
+
+
 ### Variable breakpoint example
 
 
