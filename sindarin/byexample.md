@@ -84,5 +84,10 @@ sindarin stepUntil: [
 		sindarin assignmentVariableName = 'lastIndex' ] ].
 sindarin node sourceCode.  "'lastIndex := firstIndex - 1'"
 ```
+fig. *@fig:sindarin-var-bp-first-hit@*
+![Variable breakpoint first hit.](graphics/sindarin-var-bp-first-hit.drawio.png label=fig:sindarin-var-bp-first-hit)
+
+fig. *@fig:sindarin-var-bp-second-hit@*
+![Variable breakpoint second hit.](graphics/sindarin-var-bp-second-hit.drawio.png label=fig:sindarin-var-bp-second-hit)
 
 ### Sindarin in the debugger
