@@ -12,11 +12,11 @@ sindarin := SindarinDebugger debug: [ OrderedCollection new add: 1 ].
 ````
 The result of the call to `debug:` returns an instance of the Sindarin debugger that we store in a local variable. 
 We then interact with this variable to observe and manipulate our execution.
-For instance, if we print the result of the following instruction:
+We can print the result of the following instruction:
 ```Smalltalk
 sindarin node sourceCode.
 ```
-we observe the following result: `"'OrderedCollection new'"`.
+We then observe the following result: `"'OrderedCollection new'"`.
 This indicates that we are about to execute the first message send from the code contained in the block closure.
 Let us step this code:
 ```Smalltalk
