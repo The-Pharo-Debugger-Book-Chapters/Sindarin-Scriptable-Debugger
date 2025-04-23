@@ -68,11 +68,11 @@ sindarin node sourceCode. "'array size'"
 Notice the following points:
 - We first test if we are in the context of a message send, using `isMessageSend`. 
 We must satisfy this condition before trying to access the `selector` of the message being sent, else we might not be in such context and an exception will be raised.
-- The `sourceCode` returns the next instruction to be executed, supposedly within the body of the `addLast:` method. 
-This API is not really adapted to visualize the actual executing source code. 
-For a better perspective, we can inspect the `sindarin` variable, which opens a minimal debugger that allows us to visualize the debugged code (fig. *@fig:sindarin-inspector@*).
+- The `sourceCode` interface returns `"'array size'"`, i.e., the next instruction to be executed, supposedly within the body of the `addLast:` method. 
+This interface is not really adapted to visualize the actual executing source code. 
+For a better perspective, we can inspect the `sindarin` variable, which opens a minimal debugger that allows us to visualize the debugged code (fig. *@fig:sindarin-inspector@*). This minimal debugger exposes the Sindarin API through a graphical user interface, as well as views on the debugged execution and its state.
 
-![Sindarin advanced debugger menu.](graphics/sindarin-inspector.drawio.pdf label=fig:sindarin-inspector)
+![Sindarin advanced debugger menu.](graphics/sindarin-inspector.drawio.png label=fig:sindarin-inspector)
 
 
 ### Variable breakpoint example
