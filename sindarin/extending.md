@@ -165,11 +165,25 @@ execute
 	self context debuggerActionModel preventUpdatesDuring: [
 			sindarin stepUntil: [ sindarin selector = targetParsingMethod asSymbol ] ]
 ```
+We now need to extend the debugger and its toolbar.
+We write the following class-side method in `StDebugger`, that retrieves the list of parsing selectors, *i.e.*, all method selectors corresponding to method susceptible to be called by the parser.
 
 ```Smalltalk
-buildSindarinSTONExtentionCommandsGroupWith: stDebuggerInstance forRoot: rootCommandGroup
+StDebugger class>>stonReaderParsingSelectors
+	^ ((STONReader methods select: [ :m | 'parse*' match: m selector ])
+		   collect: #selector) asSortedCollection
+```
+Next, we write the following class-side method in `StDebugger`, that will be called by the `Spec` framework upon initialization of the debugger presenter.
+`Spec` automatically passes as parameters the instance of `StDebugger` being opened and its associated tree of commands.
+To be recognized by `Spec` as part of the extension mechanism, it must have the pragma `<extensionCommands>` at its beginning:
+
+```Smalltalk
+StDebugger class>>buildSindarinSTONExtentionCommandsGroupWith: stDebuggerInstance forRoot: rootCommandGroup
 	<extensionCommands>
 ``` 
+
+We then create a `SindarinSTONParsingCommand` command object for each possible parsing selector.
+To each command, we pass the parsing selector as the target of the stepping logic we wrote in the `SindarinSTONParsingCommand>>execute` method.
 
 ```Smalltalk
 | commands toolbarSTONGroup |
@@ -180,6 +194,8 @@ commands := self stonReaderParsingSelectors collect: [ :selector |
                 cmd decoratedCommand targetParsingMethod: selector asString.
                 cmd ].
 ``` 
+
+
 We create a new toolbar group, under which we want our commands to appear.
 We configure the group as a popover group, with a name and an icon.
 In the context of this chapter, this group configuration is arbitrary  and could be changed to other settings:
@@ -194,10 +210,12 @@ We find the main toolbar command group and register our new group, so that it is
 ```Smalltalk
 (self debuggerToolbarCommandGroupFor: rootCommandGroup) register: toolbarSTONGroup.
 ``` 
-Finally, we register each command under the `toolbarSTONGroup`, which makes our new menu appear the next time we debug ():
+Finally, we register each command under the `toolbarSTONGroup`, which makes our new menu appear the next time we debug:
 ```Smalltalk
 commands do: [ :c | toolbarSTONGroup register: c ].	
 ``` 
+
+
 
 ### Saving and loading scripts
 
