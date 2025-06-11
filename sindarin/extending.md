@@ -215,7 +215,7 @@ Finally, we register each command under the `toolbarSTONGroup`, which makes our 
 commands do: [ :c | toolbarSTONGroup register: c ].	
 ``` 
 
-
+![Our new STON parsing menu is now available in the debugger!](graphics/new-parsing-menu.png label=fig:new-menu)
 
 ### Saving and loading scripts
 
