@@ -202,3 +202,5 @@ commands do: [ :c | toolbarSTONGroup register: c ].
 ### Saving and loading scripts
 
 ### Automatically transforming scripts into debugger commands
+
+### Build your own scripting library and make it available to the community
