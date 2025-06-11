@@ -199,3 +199,6 @@ Finally, we register each command under the `toolbarSTONGroup`, which makes our 
 commands do: [ :c | toolbarSTONGroup register: c ].	
 ``` 
 
+Saving and loading scripts
+
+Automatically transforming scripts into debugger commands
