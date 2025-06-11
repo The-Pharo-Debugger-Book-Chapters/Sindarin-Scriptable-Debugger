@@ -126,7 +126,7 @@ defaultName
 
 We just created on script that implements a domain-specific stepping operator that steps between object parsing operations.
 However, the STON parser has a variety of parsing operations that may also be interesting.
-It makes little sense to group these commands under the Advanced menu, as they are domain-specific, unlike the general-purpose scripts typically found there.
+Unlike the general-purpose scripts typically found in the advanced menu, they are domain-specific and it makes little sense to group these commands under that menu.
 
 Therefore, we will build a new menu for our STON stepping scripts!
 For that, we will create a generic command that we use to instantiate a new menu with the STON domain-specific stepping operators.
