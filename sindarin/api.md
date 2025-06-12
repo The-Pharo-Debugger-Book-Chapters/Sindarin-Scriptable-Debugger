@@ -45,4 +45,3 @@
 | `continue` | Steps until the execution is interrupted or completed. |
 | `isMessageSend` | Returns `true` if the next instruction is a message send. |
 | `isAssignment` | Returns `true` if the next instruction is an assignment. |
-| `break` | Returns a configurable breakpoint object. |
