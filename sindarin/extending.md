@@ -138,8 +138,15 @@ SindarinCommand << #SindarinSTONParsingCommand
 	package: 'Sindarin-Chapter-Commands'
 ```
 
-We add accessors to that instance variable:
+We also remove the pragma `<codeExtensionDebugCommand:1>` from the `defaultName` class-side method.
+```Smalltalk
+defaultName
+	^ 'steps to next #parseObjects'
+```
+This pragma was used to register the command in the advanced debugger menu. However, since we are now registering each
+command into our specific menu, the pragma is no longer necessary and would create a conflict.
 
+We add accessors to that instance variable:
 ```Smalltalk
 targetParsingMethod: anObject
 	targetParsingMethod := anObject
