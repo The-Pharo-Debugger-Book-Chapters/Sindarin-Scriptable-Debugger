@@ -228,6 +228,36 @@ Our new menu is now available in newly opened debuggers (fig. *@fig:new-menu@*)!
 
 ### Saving and loading scripts
 
+Until now, we have written severeal scripts. However, these scripts disappear when the debugger is closed. While it is
+possible to preserve a script by turning it into a command, this process can be complex for quick or temporary scripts.
+
+To solve this problem, we introduce the concept of scripts repositories, allowing users to save their scripts outside of the debugger session and load them later when needed.
+
+We continue with our example. Previously, we wrote the following script:
+```Smalltalk
+sindarin stepUntil: [ sindarin selector = #parseObject ]
+```
+Now that our scripts is written we can save it for future use. 
+
+First, we should give it a meaningfull name.
+![Renaming the script to 'Step Until #parseObject'](graphics/sindarin-rename-parseObject.png)
+
+Then simply click the save button and voilà, your scripts is saved and will persist beyond the current debugger session.
+
+Why stop at just one script ? Let's create another one by simply changing your script to:
+```Smalltalk
+sindarin stepUntil: [ sindarin selector = #parseValue ]
+```
+As with the first script, give it a name and click the save button.
+![Renaming the script to 'Step Until #parseValue'](graphics/sindarin-rename-parseValue.png)
+
+The purpose of saving a script is to be able to retrieve it later and now is the time. Let's say we want to bring back 'Step Until #parseObject'.
+
+To do so, click the Load a script button. the layout should change to:
+![The load script layout](graphics/sindarin-load-script-layout.png)
+
+here, you can see all your saved scripts. Select 'Step Until #parseObject', then click on Load. And just like that your scripts is back !
+
 ### Automatically transforming scripts into debugger commands
 
 ### Build your own scripting library and make it available to the community
