@@ -13,4 +13,4 @@ jobs:
   build:
     uses: SquareBracketAssociates/BookBuilderDashboard/.github/workflows/main.yml@newVersionOfPillar
     with:
-      bookname: sindarin-pharo-debugger-book-chapter-wip
+      bookname: debugging-spy-book-chapter-wip
