@@ -260,4 +260,36 @@ here, you can see all your saved scripts. Select 'Step Until #parseObject', then
 
 ### Automatically transforming scripts into debugger commands
 
+(This part do Adding a new menu extending the debugger and Command for you)
+
+Click the "+" button (Create a command from the current debugging scripts)
+Then give your command a description and give it an Icon (from the pharo icon list)
+Restart your debuggeur to update the menus lists and theirs commands (By default your command is created in the "Scripts" menu).
+If you don't want this command in your group you can delete it by pressing the "x" button.
+
 ### Build your own scripting library and make it available to the community
+
+create a new class in your package, this class should extend StSindarinDebuggerScriptRepository
+```Smalltalk
+StSindarinDebuggerScriptRepository << #MySindarinCommandsMenu
+	slots: {};
+	package: 'my-sindarin-commands'
+```
+
+Go to class side and implement repositoryName accessor
+``` Smalltalk
+repositoryName
+	^ 'My Scripting Library'
+```
+
+Now go to the debuggeur and click on the drop list next to the remove command, you should see your new Scripting Library.
+Select it and every command will be put in your library
+
+in your package you can now see your commands as classes:
+``` Smalltalk
+SindarinCommand << #SindarinMyScriptingLibraryLastUpdatedCommand
+	slots: {};
+	package: 'my-sindarin-commands'
+```
+
+if you wish to share your library to the community, other only need your package and reopen their debuggeur. 
