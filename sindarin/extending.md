@@ -260,18 +260,33 @@ here, you can see all your saved scripts. Select 'Step Until #parseObject', then
 
 ### Automatically transforming scripts into debugger commands
 
-(This part do Adding a new menu extending the debugger and Command for you)
+Previously we learned how to turn a script to a command. We had to manually extend the debugger and its toolbar and create our SindarinCommand subclasse. Theses steps are not easy and can be redundant especially if you wish to have several commands.
 
-Click the "+" button (Create a command from the current debugging scripts)
-Then give your command a description and give it an Icon (from the pharo icon list)
-Restart your debuggeur to update the menus lists and theirs commands (By default your command is created in the "Scripts" menu).
-If you don't want this command in your group you can delete it by pressing the "x" button.
+Fortunately transforming a script to a debugger command make this process for you !
+
+First, load or write your script and then click the "Create a command from the current debugging scripts" button:
+![The create a command from scripts button](graphics/sindarin-create-command-button.png)
+The layout should change to:
+![The create command layout](graphics/sindarin-create-command-layout.png)
+
+You can give your command a description and select an icon (from the pharo icon list) before clicking 'Create'.
+
+Restart your debuggeur to update the menus lists and theirs commands (By default your command is created in the "Scripts" menu) now you should see your command menu with yout command in it !
+![Your command in the Debugger toolbar](graphics/sindarin-command-in-scripts-menu-toolbar.png)
+
+If you wish to find the generated code go to the package 'NewTools-Sindarin-Tools' (it's the default location):
+- In tag 'Scripts' you can find your command and in the tag 'Extensions' 
+![Your generated command class](graphics/sindarin-generated-command.png):
+- In StDebugger class side you can find the method to 'buildSindarin...ExtensionCommandsGroupWith: forRoot' that add your menu:
+![Your generated command group](graphics/sindarin-build-extension-generated.png)
+
+If you don't want this command in your group you can delete it by pressing the "x" button. All the generated code is deleted.
 
 ### Build your own scripting library and make it available to the community
 
 create a new class in your package, this class should extend StSindarinDebuggerScriptRepository
 ```Smalltalk
-StSindarinDebuggerScriptRepository << #MySindarinCommandsMenu
+StSindarinDebuggerScriptRepositoryAbstract << #MySindarinCommandsMenu
 	slots: {};
 	package: 'my-sindarin-commands'
 ```
@@ -293,3 +308,4 @@ SindarinCommand << #SindarinMyScriptingLibraryLastUpdatedCommand
 ```
 
 if you wish to share your library to the community, other only need your package and reopen their debuggeur. 
+Note that only commands are shared, unlike scripts.
