@@ -260,18 +260,36 @@ here, you can see all your saved scripts. Select 'Step Until #parseObject', then
 
 ### Automatically transforming scripts into debugger commands
 
-(This part do Adding a new menu extending the debugger and Command for you)
+Previously we learned how to turn a script to a command. We had to manually extend the debugger and its toolbar and create our SindarinCommand subclasse. Theses steps are not easy and can be redundant especially if you wish to have several commands.
 
-Click the "+" button (Create a command from the current debugging scripts)
-Then give your command a description and give it an Icon (from the pharo icon list)
-Restart your debuggeur to update the menus lists and theirs commands (By default your command is created in the "Scripts" menu).
-If you don't want this command in your group you can delete it by pressing the "x" button.
+Fortunately transforming a script to a debugger command make this process for you !
+
+First, load or write your script and then click the "Create a command from the current debugging scripts" button:
+![The create a command from scripts button](graphics/sindarin-create-command-button.png)
+The layout should change to:
+![The create command layout](graphics/sindarin-create-command-layout.png)
+
+The script name is used to generate the command name.
+You can give your command a description and select an icon (from the pharo icon list) before clicking 'Create'.
+
+Restart your debuggeur to update the menus lists and theirs commands (By default your command is created in the "Scripts" menu) now you should see your command menu with yout command in it !
+![Your command in the Debugger toolbar](graphics/sindarin-command-in-scripts-menu-toolbar.png)
+
+If you wish to find the generated code go to the package 'NewTools-Sindarin-Tools' (it's the default location):
+- In tag 'Scripts' you can find your command 
+![Your generated command class](graphics/sindarin-generated-command.png)
+- In the tag 'Extensions', in StDebugger class side you can find the method to 'buildSindarin...ExtensionCommandsGroupWith: forRoot' that add your menu:
+![Your generated command group](graphics/sindarin-build-extension-generated.png)
+
+If you wish to remove a command from your group, load it from the script loader and delete it by pressing the "x" button. The generated code is deleted. 
 
 ### Build your own scripting library and make it available to the community
 
-create a new class in your package, this class should extend StSindarinDebuggerScriptRepository
+For now every commands you create are display in the 'Scripts' group. You may be working on domain specific scripts and wish to have them in a specific group, like previously with the STON group. 
+
+In the package you want to save your commands, create a class wich extend StSindarinDebuggerScriptRepository
 ```Smalltalk
-StSindarinDebuggerScriptRepository << #MySindarinCommandsMenu
+StSindarinDebuggerScriptRepositoryAbstract << #MySindarinCommandsMenu
 	slots: {};
 	package: 'my-sindarin-commands'
 ```
@@ -282,14 +300,23 @@ repositoryName
 	^ 'My Scripting Library'
 ```
 
-Now go to the debuggeur and click on the drop list next to the remove command, you should see your new Scripting Library.
-Select it and every command will be put in your library
+Now in the debuggeur, click on the drop list next to the remove command, you should see your new Scripting Library.
+Select it and every scripts and commands saved and created will be in your library.
 
-in your package you can now see your commands as classes:
+Once you generate a command fron a script, your package become the corresponding class location.
 ``` Smalltalk
 SindarinCommand << #SindarinMyScriptingLibraryLastUpdatedCommand
 	slots: {};
 	package: 'my-sindarin-commands'
 ```
 
-if you wish to share your library to the community, other only need your package and reopen their debuggeur. 
+If you wish to share your library to the community, other only need your package. You can save it in a git repository and give acces to your code. 
+
+### How to load a scripting library
+
+For this part we assume that the library is in a github repository.
+
+Open the git repository browser "ctrl + oi", click 'Add a repository', enter the git repository credentials.
+Load the Pharo repository in your image and just like the scriptings library is usable in the debuger. 
+
+Note that only commands are shared, unlike scripts.
