@@ -105,7 +105,7 @@ Failing to do such encapsulation will trigger an update of the debugger presente
 execute
 1	| sindarin |
 2	sindarin := self context sindarinDebugger.
-3	self context debuggerActionModel preventUpdatesDuring: [
+3	self context debuggerClientModel preventUpdatesDuring: [
 4			sindarin stepUntil: [ sindarin selector = #parseObject ] ]
 ```
 
@@ -169,7 +169,7 @@ We have to adapt a bit the `execute` method to use the target operation instead 
 execute
 	| sindarin |
 	sindarin := self context sindarinDebugger.
-	self context debuggerActionModel preventUpdatesDuring: [
+	self context debuggerClientModel preventUpdatesDuring: [
 			sindarin stepUntil: [ sindarin selector = targetParsingMethod asSymbol ] ]
 ```
 We now need to extend the debugger and its toolbar.
