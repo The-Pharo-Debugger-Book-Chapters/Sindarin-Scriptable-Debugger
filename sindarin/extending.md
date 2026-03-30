@@ -310,4 +310,6 @@ SindarinCommand << #SindarinMyScriptingLibraryLastUpdatedCommand
 	package: 'my-sindarin-commands'
 ```
 
-if you wish to share your library to the community, other only need your package and reopen their debuggeur. 
+Because your package contains your commands, your scripts repository and the `StDebugger` extension to build your menu. Sharing your library is like sharing any other Pharo package. You just need the target image to load your package.
+
+*Note* : only commands are shared, scripts stay in your Pharo image.
