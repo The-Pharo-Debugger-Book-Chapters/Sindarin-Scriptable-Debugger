@@ -260,9 +260,9 @@ Here, you can see all your saved scripts. Select `Step Until #parseObject`, then
 
 ### Automatically transforming scripts into debugger commands
 
-Previously we learned how to turn a script to a command. We had to manually extend the debugger and its toolbar and create our `SindarinCommand` subclasse. Theses steps are not easy and can be redundant especially if you wish to have several commands.
+Previously we learned how into turn a script to a command. We had to manually extend the debugger and its toolbar and create our `SindarinCommand` subclass. These steps are not easy and can be redundant especially if you wish to have several commands.
 
-Fortunately transforming a script to a debugger command make this process for you !
+Fortunately transforming a script to a debugger command makes this process for you !
 
 First, load or write your script and then click the *Create a command from the current debugging scripts* button:
 ![The create a command from scripts button](graphics/sindarin-create-command-button.png)
@@ -270,46 +270,46 @@ The layout should change to:
 ![The create command layout](graphics/sindarin-create-command-layout.png)
 
 The script name is used to generate the command name.
-You can give your command a description and select an icon (from the pharo icon list) before clicking `Create`.
+You can give your command a description and select an icon (from the Pharo icon list) before clicking `Create`.
 
-Restart your debuggeur to update the menus lists and theirs commands (By default your command is created in the `Scripts` menu). You should see your command menu with your command in it !
+Restart your debugger to update the menu lists and their commands (By default your command is created in the `Scripts` menu). You should see your command menu with your command in it !
 ![Your command in the Debugger toolbar](graphics/sindarin-command-in-scripts-menu-toolbar.png)
 
 If you need to find the generated code go to the package `NewTools-Sindarin-Tools` (it's the default location):
 - In tag `Scripts` you can find your command 
 ![Your generated command class](graphics/sindarin-generated-command.png)
-- In the tag `Extensions`, in StDebugger class side you can find the method to `buildSindarin...ExtensionCommandsGroupWith: forRoot` that add your menu:
+- In the tag `Extensions`, in StDebugger class side you can find the method to `buildSindarin...ExtensionCommandsGroupWith: forRoot` that adds your menu:
 ![Your generated command group](graphics/sindarin-build-extension-generated.png)
 
 If you wish to remove a command from your group, load it from the script loader and delete it by pressing the *x* button. The generated code is also deleted. 
 
 ### Build your own scripting library and make it available to the community
 
-For now every commands you create are display in the `Scripts` group. You may be working on domain specific scripts and wish to have them in a specific group, like previously with the STON group. 
+For now, every command you create are displayed in the `Scripts` group. You may be working on domain-specific scripts and wish to have them in a specific group, like previously with the STON group. 
 
-In the package you want to save your commands, create a class wich extend `StSindarinDebuggerScriptRepository`
+In the package you want to save your commands, create a class which extends `StSindarinDebuggerScriptRepository`
 ```Smalltalk
 StSindarinDebuggerScriptRepositoryAbstract << #MySindarinCommandsMenu
 	slots: {};
 	package: 'my-sindarin-commands'
 ```
 
-Go to class side and implement `repositoryName` accessor
+Go to class side and implement the required `repositoryName` accessor
 ``` Smalltalk
 repositoryName
 	^ 'My Scripting Library'
 ```
 
-Now in the debuggeur, click on the drop list next to the remove command, you should see your scripting library.
-Select it and every scripts and commands saved and created will be store in your library.
+Now in the debugger, click on the drop list next to the remove command, you should see your scripting library.
+Select it and every script and command saved and created will be stored in your library.
 
-Once you generate a command fron a script, your package become the corresponding class location.
+Once you generate a command from a script, your package becomes the corresponding class location.
 ``` Smalltalk
 SindarinCommand << #SindarinMyScriptingLibraryLastUpdatedCommand
 	slots: {};
 	package: 'my-sindarin-commands'
 ```
 
-Because your package contains your commands, your scripts repository and the `StDebugger` extension to build your menu. Sharing your library is like sharing any other pharo package. You juste need the target image to load your package.
+Because your package contains your commands, your scripts repository and the `StDebugger` extension to build your menu. Sharing your library is like sharing any other Pharo package. You just need the target image to load your package.
 
-*Note* : only commands are shared, scripts stays in your Pharo image.
+*Note* : only commands are shared, scripts stay in your Pharo image.
